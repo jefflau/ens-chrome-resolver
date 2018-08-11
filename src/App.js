@@ -1,8 +1,16 @@
+import { providers } from 'ethers';
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ethers: new providers.InfuraProvider(providers.networks.mainnet),
+    }
+    this.state.ethers.getBlockNumber().then(console.log)
+  }
   render() {
     return (
       <div className="App">
