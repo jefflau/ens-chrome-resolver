@@ -29,7 +29,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src='./ens-logo.png' className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to ENS</h1>
+          <h1 className="App-title">ENS</h1>
         </header>
         <input type="text" ref={input => (this.input = input)} />
         <button onClick={() => this.resolve()}>Search</button>
