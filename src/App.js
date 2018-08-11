@@ -1,6 +1,5 @@
 import { providers } from 'ethers'
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
@@ -29,6 +28,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header className="App-header">
+          <img src='./ens-logo.png' className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to ENS</h1>
+        </header>
         <input type="text" ref={input => (this.input = input)} />
         <button onClick={() => this.resolve()}>Search</button>
         <div>{this.state.address}</div>
