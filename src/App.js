@@ -1,40 +1,55 @@
 import { providers } from 'ethers'
 import React, { Component } from 'react'
+import Search from './components/Search'
+import { parseSearchTerm } from './utils'
 import './App.css'
 
 class App extends Component {
   state = {
-    ethers: {}
+    ethers: {},
+    result: ''
   }
   componentDidMount() {
     this.setState({
       ethers: new providers.InfuraProvider(providers.networks.mainnet)
     })
   }
-  resolve = () => {
-    this.state.ethers.resolveName(this.input.value).then(address => {
-      this.setState({
-        address
-      })
-    })
+  resolve = async input => {
+    const type = parseSearchTerm(input)
+
+    console.log(type)
+
+    switch (type) {
+      case 'eth':
+        const address = await this.state.ethers.resolveName(input)
+
+        this.setState({
+          result: address
+        })
+        break
+      case 'address':
+        const name = await this.state.ethers.lookupAddress(input)
+        this.setState({
+          result: name
+        })
+        break
+      default:
+        this.setState({
+          result: 'invalid name or address'
+        })
+        console.log('unsupported')
+    }
   }
 
-  // handleChange = e => {
-  //   console.log(e)
-  //   this.setState({
-  //     input: e.value
-  //   })
-  // }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src='./ens-logo.png' className="App-logo" alt="logo" />
+          <img src="./ens-logo.png" className="App-logo" alt="logo" />
           <h1 className="App-title">ENS</h1>
         </header>
-        <input type="text" ref={input => (this.input = input)} />
-        <button onClick={() => this.resolve()}>Search</button>
-        <div>{this.state.address}</div>
+        <Search ethers={this.state.ethers} resolve={this.resolve} />
+        <div>{this.state.result}</div>
       </div>
     )
   }

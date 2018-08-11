@@ -1,4 +1,17 @@
 import { addressUtils } from '@0xproject/utils'
+import uts46 from 'idna-uts46'
+import tlds from './tlds.json'
+
+export function validateName(name) {
+  try {
+    return uts46.toUnicode(name, {
+      useStd3ASCII: true,
+      transitional: false
+    })
+  } catch (e) {
+    throw e
+  }
+}
 
 export const parseSearchTerm = term => {
   let regex = /(?<=\.|^)[^.]+$/
