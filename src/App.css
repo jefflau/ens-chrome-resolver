@@ -5,22 +5,24 @@
 .App-logo {
   animation: App-logo-spin infinite 5s cubic-bezier(0, 0.34, 0.34, 0.98);
   animation-direction: alternate;
-  height: 120px;
+  height: 75px;
 }
 
 .App-header {
+  align-items: center;
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  height: 80px;
   position: relative;
   color: white;
 }
 
 .App-title {
-  font-size: 1.2em;
+  font-size: 1em;
   left: 50%;
   transform: translateX(-50%);
-  top: 31%;
+  top: 35%;
   position: absolute;
 }
 
