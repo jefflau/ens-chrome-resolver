@@ -7,9 +7,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      ethers: new providers.InfuraProvider(providers.networks.mainnet),
+      ethers: new providers.InfuraProvider(providers.networks.mainnet)
     }
-    this.state.ethers.getBlockNumber().then(console.log)
+    this.state.ethers.resolveName('brettsun.eth').then(console.log)
   }
   render() {
     return (
