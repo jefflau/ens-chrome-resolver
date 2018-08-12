@@ -1,12 +1,14 @@
 import { providers } from 'ethers'
 import React, { Component } from 'react'
 import { parseSearchTerm } from './utils'
+import QRGenerator from './QRGenerator'
 import './App.css'
 
 class App extends Component {
   state = {
     ethers: {},
-    result: ''
+    result: '',
+    value: '' 
   }
 
   componentDidMount() {
@@ -18,11 +20,15 @@ class App extends Component {
   resolve = async (e) => {
     e.preventDefault();
 
-    const type = parseSearchTerm(this.input.value);
-
+    this.setState({
+      value: this.input.value
+    });
+    var address;
+    const type = parseSearchTerm(this.input.value);   
+    console.log(type)
     switch (type) {
       case 'eth':
-        const address = await this.state.ethers.resolveName(this.input.value)
+        address = await this.state.ethers.resolveName(this.input.value)
 
         this.setState({
           result: address
@@ -34,6 +40,19 @@ class App extends Component {
           result: name
         })
         break
+      case 'empty':
+        this.setState({
+          result: ''
+        });
+        break
+      case 'search':
+        console.log(this.input.value + '.eth');
+        address = await this.state.ethers.resolveName(this.input.value + '.eth')
+        this.setState({
+          value: this.input.value + '.eth',
+          result: address
+        })
+        break;
       default:
         this.setState({
           result: 'No ENS resolver'
@@ -47,8 +66,8 @@ class App extends Component {
       <div className="Whole">
       <div className="App">
         <header className="App-header">
-          <img src="./ens-logo.png" className="App-logo" alt="logo" />
-
+          
+          <QRGenerator query={this.state.result} query2={this.state.value} /> 
         </header>
         <form onSubmit={(e) => this.resolve(e)}>
           <div className="input_submit">
@@ -58,6 +77,7 @@ class App extends Component {
         </form>
       </div>
       <div className="App-result">{this.state.result}</div>
+      
       </div>
     )
   }

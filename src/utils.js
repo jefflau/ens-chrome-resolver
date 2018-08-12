@@ -15,7 +15,7 @@ export function validateName(name) {
 
 export const parseSearchTerm = term => {
   let regex = /(?<=\.|^)[^.]+$/
-
+  if (term == ""){ return 'empty';}
   if (term.indexOf('.') !== -1) {
     const tld = term.match(regex) ? term.match(regex)[0] : ''
 

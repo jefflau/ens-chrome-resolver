@@ -63,10 +63,13 @@
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 15px;
+  background-color: #58bbfd;
+  color: white;
+  border-radius: 6px;
 }
 
 .App-result {
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
   align-items: flex-end;
   max-width: 380px;
@@ -76,4 +79,11 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.qrcode{
+  height: 80px;
+  width: 80px ;
+  align-items:flex-start;
+  margin:8px;
 }

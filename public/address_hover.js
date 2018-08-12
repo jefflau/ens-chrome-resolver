@@ -34,7 +34,7 @@ function unhoverdiv(e){
 }
 
 jQuery.fn.highlight = function () {
-    var regex = new RegExp('(^\\|\\b)(0x)?[A-Fa-f0-9]{40}($\\|\\b)');   
+    var regex = new RegExp('(\\\\b|^)(0x)?[A-Fa-f0-9]{40}($|\\\\b)');   
     return this.each(function () {
         $(this).contents().filter(function() {
             return this.nodeType == 3 && regex.test(this.nodeValue);
@@ -46,15 +46,12 @@ jQuery.fn.highlight = function () {
     });
 };
 
-
-
-// $(document).ready(function(){
-   window.onload = function(){
-        provider = new ethers.providers.InfuraProvider(ethers.providers.networks.mainnet);
-        $('body').append("<div class=\\\"ens-popup\\\" id=\\\"ensresolve\\\" style=\\\"position: fixed;\\\"></div>")
-        $('body').find('*').contents().highlight();
-   }
-// })`;
+window.onload = function(){
+    provider = new ethers.providers.InfuraProvider(ethers.providers.networks.mainnet);
+    $('body').append("<div class=\\\"ens-popup\\\" id=\\\"ensresolve\\\" style=\\\"position: fixed;\\\"></div>")
+    $('body').find('*').contents().highlight();
+}
+`;
 
 var css = `
     /* Popup container - can be anything you want */
