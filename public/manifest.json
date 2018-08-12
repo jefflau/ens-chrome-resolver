@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "My Extension",
-  "description": "This extension is a starting point to create a real Chrome extension",
+  "name": "ENS Resolver",
+  "description": "ENS resolver that can resolve an Ethereum address or ENS name manually or automatically.",
   "version": "0.0.1",
 
   "browser_action": {
@@ -10,9 +10,9 @@
     "default_title": "Open the popup"
   },
   "icons": {
-    "16": "logo-small.png",
-    "48": "logo-small.png",
-    "128": "logo-small.png"
+    "16": "ens-logo.png",
+    "48": "ens-logo.png",
+    "128": "ens-logo.png"
   },
   "background": {
     "scripts": ["background.js"],
