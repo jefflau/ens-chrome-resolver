@@ -25,17 +25,18 @@ class App extends Component {
     });
     var address;
     const type = parseSearchTerm(this.input.value);   
-    console.log(type)
+    
     switch (type) {
       case 'eth':
         address = await this.state.ethers.resolveName(this.input.value)
-
+        if(address == null){this.setState({ result: 'No ENS resolver' }); return;}
         this.setState({
           result: address
-        })
+        })        
         break
       case 'address':
         const name = await this.state.ethers.lookupAddress(this.input.value)
+        if(name == null){this.setState({ result: 'No ENS resolver' }); return;}        
         this.setState({
           result: name
         })
@@ -45,9 +46,9 @@ class App extends Component {
           result: ''
         });
         break
-      case 'search':
-        console.log(this.input.value + '.eth');
+      case 'search':        
         address = await this.state.ethers.resolveName(this.input.value + '.eth')
+        if(address == null){this.setState({ result: 'No ENS resolver' }); return;}
         this.setState({
           value: this.input.value + '.eth',
           result: address

@@ -3,7 +3,7 @@
 
   "name": "ENS Resolver",
   "description": "ENS resolver that can resolve an Ethereum address or ENS name manually or automatically.",
-  "version": "0.0.1",
+  "version": "1.0",
 
   "browser_action": {
     "default_popup": "index.html",
